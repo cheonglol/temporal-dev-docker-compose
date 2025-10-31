@@ -32,8 +32,8 @@ services:
     image: postgres:${POSTGRESQL_VERSION}
     networks:
       - temporal-network
-    expose:
-      - 5433
+    ports:
+      - 5433:5432
     volumes:
       - /var/lib/postgresql/data
   temporal:
@@ -43,7 +43,7 @@ services:
       - opensearch
     environment:
       - DB=postgres12
-      - DB_PORT=5433
+      - DB_PORT=5432
       - POSTGRES_USER=temporal
       - POSTGRES_PWD=temporal
       - POSTGRES_SEEDS=postgresql
