@@ -30,9 +30,9 @@ services:
     restart: on-failure
   postgresql:
     container_name: temporal-postgresql
-    command: 
+    command:
       - "-c"
-      - "ssl=on" 
+      - "ssl=on"
       - "-c"
       - "ssl_cert_file=/pki/postgresql.pem"
       - "-c"
@@ -46,7 +46,7 @@ services:
     networks:
       - temporal-network
     expose:
-      - 5432
+      - 5433
     volumes:
       - temporal_tls_pki:/pki
       - /var/lib/postgresql/data
@@ -64,7 +64,7 @@ services:
       - elasticsearch
     environment:
       - DB=postgres12
-      - DB_PORT=5432
+      - DB_PORT=5433
       - POSTGRES_USER=temporal
       - POSTGRES_PWD=temporal
       - POSTGRES_SEEDS=postgresql
@@ -121,4 +121,4 @@ networks:
     name: temporal-network
 volumes:
   temporal_tls_pki:
-   external: true
+    external: true

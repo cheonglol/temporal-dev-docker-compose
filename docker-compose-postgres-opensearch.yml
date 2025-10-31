@@ -12,9 +12,9 @@ services:
       - plugins.security.disabled=true
     image: opensearchproject/opensearch:${OPENSEARCH_VERSION}
     ulimits:
-#      memlock:
-#        soft: -1 # Set memlock to unlimited (no soft or hard limit)
-#        hard: -1
+      #      memlock:
+      #        soft: -1 # Set memlock to unlimited (no soft or hard limit)
+      #        hard: -1
       nofile:
         soft: 65536 # Maximum number of open files for the opensearch user - set to at least 65536
         hard: 65536
@@ -33,7 +33,7 @@ services:
     networks:
       - temporal-network
     expose:
-      - 5432
+      - 5433
     volumes:
       - /var/lib/postgresql/data
   temporal:
@@ -43,7 +43,7 @@ services:
       - opensearch
     environment:
       - DB=postgres12
-      - DB_PORT=5432
+      - DB_PORT=5433
       - POSTGRES_USER=temporal
       - POSTGRES_PWD=temporal
       - POSTGRES_SEEDS=postgresql
